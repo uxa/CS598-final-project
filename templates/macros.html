@@ -1,0 +1,16 @@
+{%- macro render_lap_form(subform, index) %}
+    <div id="lap-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+        <div class="form-control">
+            {{ subform.movie_name.label }}
+            {{ subform.movie_name }}
+            {{ subform.movie_name.description }}
+        </div>
+        <div class="form-control">
+            {{ subform.rating.label }}
+            {{ subform.rating(class_='three') }}
+            {{ subform.rating.description }}
+        </div>
+        <a class="btn btn-danger remove" href="#">Remove</a>
+        <hr/>
+    </div>
+{%- endmacro %}

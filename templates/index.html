@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main_menu.css')}}">
+<title>Movie Recommender</title>
+<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+<style>
+    html {
+        background-color:#161718;
+        color:aliceblue;
+        font-family: Verdana, sans-serif;
+    }
+
+    footer{
+        text-align:center;
+        font-size: 0.6em;
+        
+    }
+
+    h3 {
+        text-align:center;
+    }
+
+    </style>
+</head>
+<body>
+    <h3>Movie Recommendation System</h3>
+    <a class="push_button red" href="/system1">System I</a> 
+    <a class="push_button blue" href="/system2">System II</a>
+    <footer>&copy; Copyright 2020 Pranav Velamakanni, Tarik Koric</footer>
+</body>
+</html>

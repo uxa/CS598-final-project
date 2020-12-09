@@ -1,0 +1,81 @@
+<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+
+{% extends "bootstrap/base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}
+System II
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    html body {
+        background-color:#161718;
+        color:aliceblue;
+        font-family: Verdana, sans-serif;
+    }
+
+    .three {
+        color:#161718;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="{{ url_for('static', filename='js/add_remove.js') }}"></script>
+
+        <style>
+            .is-hidden {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h3>Movie Recommender (System II)</h3>
+            <p>Provides movie recommendations based on your ratings, using the k-nearest neighbors algorithm.</p>
+            <hr />
+
+        {# Show all subforms #}
+        <form id="lap-form" action="" method="POST" role="form">
+            {{ form.hidden_tag() }}
+            <a id="add" class="btn btn-success" href="#">Add Movie</a>
+            <p></p>
+            <div id="subforms-container">
+                {% for subform in form.movies %}
+                    {{ macros.render_lap_form(subform, loop.index0) }}
+                {% endfor %}
+            </div>
+
+            <div class="form-control">
+                {{ form.number.label }}
+                {{ form.number(class_='three') }}
+                {{ form.number.description }}
+            </div>
+            <p></p>
+            <input class="btn btn-default" id="submit" name="submit" type="submit" value="Submit">
+        </form>
+
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
+
+        {# Form template #}
+        {{ macros.render_lap_form(_template, '_') }}
+
+        <hr />
+        <p>Add up to 20 movie ratings. The quality of recommendations is improved with more ratings.</p>
+        <p>Submit the form to receive movie recommendations.</p>
+        <p></p>
+        <p><a href="/">Return to homepage</a></p>
+        <footer>&copy; Copyright 2020 Pranav Velamakanni, Tarik Koric</footer>
+    </div>
+    </body>
+</html>
+{% endblock %}

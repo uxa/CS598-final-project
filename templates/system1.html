@@ -1,0 +1,33 @@
+
+<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+System I
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    html body {
+        background-color:#161718;
+        color:aliceblue;
+        font-family: Verdana, sans-serif;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3>Movie Recommender (System I)</h3>
+  <p>Provides movie recommendations for the selected genre based on the rating algorithm selected below.</p>
+  <hr>
+    {{ wtf.quick_form(form) }}
+  <hr>
+  <p>Submit the form to receive movie recommendations.</p>
+  <p><a href="/">Return to homepage</a></p>
+  <footer>&copy; Copyright 2020 Pranav Velamakanni, Tarik Koric</footer>
+</div>
+{% endblock %}

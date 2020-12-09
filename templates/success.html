@@ -1,0 +1,45 @@
+<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='icons/favicon.ico') }}">
+
+{% extends "bootstrap/base.html" %}
+{% block title %} Results {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    html body {
+        background-color:#161718;
+        color:aliceblue;
+        font-family: Verdana, sans-serif;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Year</th>
+            <th>Plot</th>
+            <th>Actors</th>
+            <th>Rating</th>
+            <th>Awards</th>
+        <tr>
+    </thead>
+    <tbody>
+        {% for movie in data %}
+        <tr>
+            <td><img src="{{ movie.Poster }}" alt="Italian Trulli" width="250" height="350" style="float:right"> <br></td>
+            <td>{{ movie.Year }}</td>
+            <td>{{ movie.Plot }}</td>
+            <td>{{ movie.Actors }}</td>
+            <td>Metascore: {{ movie.Metascore }} <p> IMDB: {{ movie.imdbRating }} </p></td>
+            <td>{{ movie.Awards }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center">
+    <p><a href="/" class="btn btn-primary">Return to homepage</a></p>
+</div>
+{% endblock %}
