@@ -106,7 +106,7 @@ def results1(genre, algo, number):
     algo_map = {'Number of reviews': 'size', 'Mean rating': 'mean_ratings', 'Weighted rating': 'weighted_rating'}
 
     data = pd.read_csv('data/final_ratings.csv')
-    results = data[(data['genre 1']  == genre) | (data['genre 2'] == genre)].sort_values(by=[algo_map.get(algo)], ascending=False).head(int(number))
+    results = data[(data['genre 1']  == genre) | (data['genre 2'] == genre) | (data['genre 3'] == genre) | (data['genre 4'] == genre) | (data['genre 5'] == genre) | (data['genre 6'] == genre)].sort_values(by=[algo_map.get(algo)], ascending=False).head(int(number))
     movie_year_list = [*map(get_movie_name_year, list(results.movie))]
 
     MovieStats = MovieInfo()
@@ -147,7 +147,6 @@ class System2(FlaskForm):
         validators = [NumberRange(min=1, max=20, message = 'Must be within 1 and 20, default is 5.')]
     )
 
-
 class RequestFormResponse2:
 
     def __init__(self, form):
@@ -173,12 +172,8 @@ def system2():
 
     if request.method == 'POST':
         if form.validate_on_submit():
-            print(request.form)
             data = RequestFormResponse2(request.form)
-            print(data.form_data)
             results = model.predict(data.form_data)
-            print(len(results))
-            print(data.recommendations)
             movie_year_list = [*map(get_movie_name_year, results[:data.recommendations])]
 
             MovieStats = MovieInfo()
